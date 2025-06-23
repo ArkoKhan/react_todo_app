@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Input from './components/Input.jsx';
+import List from './components/List.jsx';
 import './App.css';
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+
+  function addTask(text) {
+    setTasks([...tasks, {text, completed: false}]);
+  };
+
+  function toggleCompleted(index) {
+    const newTasks = [...tasks];
+    newTasks[index].completed = !newTasks[index].completed;
+    setTasks(newTasks);
+  }
+
+  function deleteTask(index) {
+    setTasks(tasks.filter((_, i) => i !==index));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <header>
+      <h1>Todo List</h1>
+    </header>
+    <main>
+      <Input addTask={addTask}/>
+      <List
+        tasks={tasks}
+        toggleCompleted={toggleCompleted}
+        deleteTask={deleteTask}
+      />
+    </main>
+    </>
   );
 }
 
