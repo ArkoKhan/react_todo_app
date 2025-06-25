@@ -1,13 +1,13 @@
-function Item({task, index, toggleCompleted, deleteTask}) {
+function Item({task, toggleCompleted, deleteTask}) {
     function handleDelete(e) {
         e.stopPropagation();
-        deleteTask(index);
+        deleteTask(task.id);
     }
 
 
     return (
         <li
-            onClick={() => toggleCompleted(index)}
+            onClick={() => toggleCompleted(task.id, task.completed)}
             style={{textDecoration: task.completed ? 'line-through' : 'none'}}
         >
             {task.text}

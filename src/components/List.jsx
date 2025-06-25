@@ -4,11 +4,10 @@ function List({tasks, toggleCompleted, deleteTask}) {
     return (
         <div className="list">
         <ul>
-        {tasks.map((task, index)=>(
+        {tasks.map((task)=>(
             <Item 
-                key={index} 
+                key={task.id} 
                 task={task} 
-                index={index}
                 toggleCompleted={toggleCompleted}
                 deleteTask={deleteTask}
 
